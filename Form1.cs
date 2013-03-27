@@ -44,7 +44,7 @@ namespace NavegadorDinamico
         void checa()
         {
 
-            StreamReader sr = new StreamReader(@"C:\p.txt");
+            StreamReader sr = new StreamReader(@"C:\p\p.txt");
             while (sr.Peek() >= 0)
             {
                 string proxy = sr.ReadLine();
@@ -55,7 +55,7 @@ namespace NavegadorDinamico
 
                     //validacion de lineas haber si ya paso el proxy
                     bool abrirconexion = true;
-                    StreamReader sr2 = new StreamReader(@"C:\p2.txt");
+                    StreamReader sr2 = new StreamReader(@"C:\p\p2.txt");
                     while (sr2.Peek() >= 0)
                     {
                         //string linea2 = sr2.ReadLine();
@@ -67,13 +67,17 @@ namespace NavegadorDinamico
                     
                     if (abrirconexion)
                     {
-                        StreamWriter sw = File.AppendText(@"c:\p2.txt");
+                        StreamWriter sw = File.AppendText(@"c:\p\p2.txt");
                         sw.WriteLine(proxy);
                         sw.Flush();
                         sw.Close();
 
-                        currentUri = new Uri(System.Configuration.ConfigurationManager.AppSettings["url"].ToString());
-                        HttpWebRequest myRequest = (HttpWebRequest)HttpWebRequest.Create(System.Configuration.ConfigurationManager.AppSettings["url"].ToString());
+                        currentUri = new Uri(@"http://www.googleadservices.com/pagead/aclk?sa=L&ai=CiUauaShTUfrjOqS6wQHeiYCwC4zTp_gC7N2Ry0-M566TxAEQASD2y9kRULPZkK4CYOXz_YTYFqAB9tul9QPIAQGoAwHIA9MEqgSDAU_QD3P3bVgfCMrPnbUNTjWlJHBxja70yeiD1vT_xBMz1zV92_OqnM1ZHke8DYR-5FXikhk5yLxmb69W-UB5NoP6J6EtnsdDNt3B6_GzlWnY2aUs3oIXzF3dSPeY0Lxm1WXTa4hQXBAIoG2b968_V9D2FTIZ_AcOh_bCASRx_tsz2Az7iAYBgAfyo9oK&num=1&cid=5GjscZc68gZW8bUzHSTxYx_m&sig=AOD64_0QEHpHBjPLp4wJkuL2XRqyfCj6NQ&client=ca-pub-7601976974643505&adurl=http://pixel.everesttech.net/3098/cq%3Fev_sid%3D3%26ev_cmpid%3D118499004%26ev_ln%3D%26ev_crx%3D21284726844%26ev_mt%3D%26ev_n%3Dd%26ev_ltx%3D%26ev_pl%3Dcancunet.blogspot.mx%26ev_pos%3Dnone%26ev_dvc%3Dc%26ev_dvm%3D%26url%3Dhttp%253A//es.godaddy.com/deals2/%253Fisc%253Dgtng2cla02%2526currencytype%253DUSD&nm=12&mb=2");
+                        HttpWebRequest myRequest = (HttpWebRequest)HttpWebRequest.Create(@"http://www.googleadservices.com/pagead/aclk?sa=L&ai=CiUauaShTUfrjOqS6wQHeiYCwC4zTp_gC7N2Ry0-M566TxAEQASD2y9kRULPZkK4CYOXz_YTYFqAB9tul9QPIAQGoAwHIA9MEqgSDAU_QD3P3bVgfCMrPnbUNTjWlJHBxja70yeiD1vT_xBMz1zV92_OqnM1ZHke8DYR-5FXikhk5yLxmb69W-UB5NoP6J6EtnsdDNt3B6_GzlWnY2aUs3oIXzF3dSPeY0Lxm1WXTa4hQXBAIoG2b968_V9D2FTIZ_AcOh_bCASRx_tsz2Az7iAYBgAfyo9oK&num=1&cid=5GjscZc68gZW8bUzHSTxYx_m&sig=AOD64_0QEHpHBjPLp4wJkuL2XRqyfCj6NQ&client=ca-pub-7601976974643505&adurl=http://pixel.everesttech.net/3098/cq%3Fev_sid%3D3%26ev_cmpid%3D118499004%26ev_ln%3D%26ev_crx%3D21284726844%26ev_mt%3D%26ev_n%3Dd%26ev_ltx%3D%26ev_pl%3Dcancunet.blogspot.mx%26ev_pos%3Dnone%26ev_dvc%3Dc%26ev_dvm%3D%26url%3Dhttp%253A//es.godaddy.com/deals2/%253Fisc%253Dgtng2cla02%2526currencytype%253DUSD&nm=12&mb=2");
+
+                        //currentUri = new Uri(@"http://cancunet.blogspot.mx/2013/03/algo-que-siempre-es-necesario-en-un.html");
+                        //HttpWebRequest myRequest = (HttpWebRequest)HttpWebRequest.Create(@"http://cancunet.blogspot.mx/2013/03/algo-que-siempre-es-necesario-en-un.html");
+                        
                         WebProxy myProxy = new WebProxy(proxy);
                         myRequest.Proxy = myProxy;
 
@@ -84,8 +88,6 @@ namespace NavegadorDinamico
                         webBrowser1.DocumentStream = myResponse.GetResponseStream();
 
                         webBrowser1.Navigating += new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
-
-
 
                         System.Threading.Thread.Sleep(10000);
 
